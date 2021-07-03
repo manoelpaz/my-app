@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import './login.css';
 
 import firebase from '../Config/firebase';
@@ -19,6 +19,12 @@ function Login(){
       .catch(function(firebaseUser) {
         setSucesso('N');
       });
+
+      firebase.auth().createUserWithEmailAndPassword(email, senha).then(resultado => {
+
+      }).catch(erro => {
+        
+      })
   }
 
   function alterarEmail(event) {
@@ -38,19 +44,19 @@ function Login(){
 
       <div className="form-floating">
         <input onChange={alterarEmail} type="email" className="form-control" id="floatingInput" placeholder="E-mail" />
-        <label for="floatingInput">E-mail</label>
+        <label htmlFor="floatingInput">E-mail</label>
       </div>
 
       <div className="form-floating">
         <input onChange={alterarSenha} type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
-        <label for="floatingPassword">Senha</label>
+        <label htmlFor="floatingPassword">Senha</label>
       </div>
 
       <button onClick={loginUsuario} className="w-100 btn btn-lg btn-primary" type="button">Acessar</button>
 
-      {
-        sucesso === 'N' ? <div className="alert alert-danger mt-2" role="alert">E-mail ou senha inválidos!</div> : ''
-      }     
+      {sucesso === 'N' ? <div className="alert alert-danger mt-2" role="alert">E-mail ou senha inválidos!</div> : ''} 
+
+      {sucesso === 'S' ? <Redirect to='/app/home' /> : null}    
 
       <div className="login-links mt-5">
         <a href="app/resetsenha" className="mx-3">Esqueci minha senha</a>
