@@ -8,6 +8,7 @@ import NovaConta from './app/NovaConta/novaconta.jsx';
 import ResetSenha from './app/ResetSenha/resetsenha.jsx';
 import Home from './app/Home/home.jsx';
 import NovoCliente from './app/NovoCliente/novocliente.jsx';
+import EditarCliente from './app/EditarCliente/editarcliente.jsx';
 
 function App(){
     return <BrowserRouter>
@@ -17,6 +18,7 @@ function App(){
     <Route exact path='/app/resetsenha' component={ResetSenha} />
     <Route exact path='/app/home' component={Home} />
     <Route exact path='/app/novocliente' component={NovoCliente} />
+    <Route exact path='/app/editarcliente/:id' component={EditarCliente} />
     </BrowserRouter>;  
   }
 
